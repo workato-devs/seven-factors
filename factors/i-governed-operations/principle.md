@@ -1,0 +1,13 @@
+# Factor I: Governed Operations
+
+*No enterprise concern delegates to an agentic protocol*
+
+The agentic protocol stack — MCP for tool integration, A2A for agent-to-agent communication, agents.md for capability discovery — is deliberately thin. Each protocol defines a narrow interface contract: how tools are discovered, how agents exchange tasks, how capabilities are advertised. None of them define authentication, authorization, transaction integrity, business rules, or compliance. This is by design. Protocols that try to solve governance become ungovernable themselves.
+
+**The control plane occupies the space these protocols leave empty — and its depth is calibrated to what it protects.** The caller may be a human asking a chatbot to cancel a reservation, an agent delegating a refund to another agent via A2A, or a nightly reconciliation job correcting inventory across a warehouse management system. In every case, the governance requirements are set by the systems the operation touches — not by who or what initiates it.
+
+A chatbot querying a product catalog needs discovery and basic authentication. An agent processing payments through Stripe needs policy enforcement — authorization, rate limits, business-rule validation — evaluated before any call reaches the backend. An application modifying patient records in Epic needs credential management through Okta or Auth0 where the agent never touches tokens, with just-in-time scoping that provisions narrow, operation-specific credentials expiring in seconds. An orchestration executing trades through a brokerage API needs transaction sequencing across Salesforce, Stripe, and an ERP with compensation logic defined before the first step begins. Each of these is the same architectural concern — governed operations — at a different point on the consequence spectrum.
+
+The dial turns in one direction. As the systems you connect gain consequence — PCI-scoped payment processors, HIPAA-regulated clinical systems, SOX-audited financial platforms — each governance layer becomes non-negotiable. The control plane doesn't add governance because a compliance officer asked for it. It adds governance because the protocols never provided it, and the systems of record require it.
+
+When the control plane is absent, protocol-level interfaces masquerade as enterprise architecture. Tools are exposed to agents without authorization checks. Credentials are embedded in server configurations. Multi-system operations have no compensation logic. Audit trails don't exist because no layer produces them. The protocol works perfectly. The enterprise application is unfit for production.
