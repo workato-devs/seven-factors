@@ -47,4 +47,10 @@ Start with [the introduction](introduction.md) if you are new to the framework. 
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [contributing/archetype.md](contributing/archetype.md) for editorial standards and the extended guidance document structure.
+The Seven Factors is a living framework. The principles are grounded in production evidence; the territory they map — the agentic control plane — is emerging infrastructure that grows more complex as the industry advances. The framework gets stronger as practitioners apply it across new domains, architectures, and failure modes.
+
+There are several ways to contribute:
+
+- **Share what you've observed.** Open an issue if you've encountered a failure mode the framework should name, applied a factor in a novel domain, or have production evidence that extends or challenges a claim.
+- **Join the conversation.** Start or join a discussion for broader questions — how a factor applies in your architecture, where the framework's vocabulary maps to your experience, what the factors should address next.
+- **Propose editorial changes.** See [CONTRIBUTING.md](CONTRIBUTING.md) and [contributing/archetype.md](contributing/archetype.md) for editorial standards and the guidance document structure.
