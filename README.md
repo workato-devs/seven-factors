@@ -6,6 +6,8 @@ The **Seven Factors** is a methodology for building the control plane that sits 
 
 The problems these factors address are emerging with agentic architectures. The solutions draw from decades of enterprise integration, distributed systems, and security engineering — applied to the novel boundary between probabilistic reasoning and deterministic systems.
 
+**The control plane between AI agents and enterprise systems is emerging infrastructure. This framework proposes a shared methodology for getting it right — so no team has to reinvent it alone.**
+
 ---
 
 ## The Factors
