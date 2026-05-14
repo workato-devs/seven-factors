@@ -1,4 +1,4 @@
-# Factor I: Governed Operations — Extended Guidance (V.2)
+# Factor I: Governed Operations — Extended Guidance 
 
 ## Desired Outcome
 
