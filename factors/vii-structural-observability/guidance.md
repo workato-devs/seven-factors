@@ -22,15 +22,15 @@ The principle makes its boldest cross-factor claim: "When the control plane alre
 
 ### Where the emergent property holds
 
-Durable execution platforms provide the strongest evidence. Temporal persists a complete event history for every workflow execution — every command generates events that serve simultaneously as the crash-recovery mechanism and the audit log. Restate tracks every step of code execution in a journal, recording both operations and their results. Azure Durable Functions uses event sourcing: the append-only store records the full series of actions.[^1] Greg Young, who formalized event sourcing with CQRS, was originally attracted to the pattern because he needed auditing.[^2] When the execution model is event-sourced, the audit trail is a view over the event log — not a separate system.
+Durable execution platforms provide the strongest evidence. Temporal persists a complete event history for every workflow execution — every command generates events that serve simultaneously as the crash-recovery mechanism and the audit log. Restate tracks every step of code execution in a journal, recording both operations and their results. Azure Durable Functions uses event sourcing: the append-only store records the full series of actions.[^1] Dapr Workflows likewise uses event sourcing — the engine manages an append-only log of history events and replays it to deterministically reconstruct workflow state after interruption.[^12] Greg Young, who formalized event sourcing with CQRS, was originally attracted to the pattern because he needed auditing.[^2] When the execution model is event-sourced, the audit trail is a view over the event log — not a separate system.
 
 ### Where supplementation is required
 
 The emergent trail is structurally complete for mutations but not legally hardened, and it does not cover all audit-qualifying events. Four gaps require intentional supplementation.
 
-**Tamper-evidence.** Durable execution event histories are append-only for replay purposes but not cryptographically tamper-evident by default. Hash-chaining, Merkle proofs, or digital signatures must be layered on top.
+**Tamper-evidence.** Durable execution event histories are append-only for replay purposes but not cryptographically tamper-evident by default. Hash-chaining, Merkle proofs, or digital signatures must be layered on top. This supplementation is beginning to move into the platform layer: Dapr 1.18 (June 2026) introduced Workflow History Signing, generating cryptographic signatures over execution records to produce tamper-evident histories that can be independently verified after the fact.[^12] It remains the exception rather than the default — most durable execution platforms still require the integrity layer to be supplied externally.
 
-**Authenticated identity.** The control plane knows which capability was invoked and by which workflow, but binding that invocation to an authenticated human or system identity requires integration with the identity layer.
+**Authenticated identity.** The control plane knows which capability was invoked and by which workflow, but binding that invocation to an authenticated human or system identity requires integration with the identity layer. One emerging pattern anchors that binding in workload identity: Dapr 1.18, for instance, signs each workflow step against its SPIFFE identity, so a later step can verify which workload produced an upstream result rather than trusting the recorded history at face value.[^12] That closes the system half of the gap — the record can attribute an invocation to a verified workload — but not the human half: which clinician or trader authorized the action still comes from the upstream identity layer. Workload identity proves what ran, not who sanctioned it.
 
 **Retention and immutability.** Event histories are retained for operational replay. Regulatory retention (SOX: seven years; FINRA: WORM) requires a separate retention policy. The event store's operational lifecycle and the audit record's compliance lifecycle are different.
 
@@ -244,6 +244,8 @@ Factor VII draws from four independent traditions, each solving a piece of the p
 [^10]: U.S. Securities and Exchange Commission & CFTC. "Findings Regarding the Market Events of May 6, 2010." Joint report, September 2010.
 
 [^11]: Bargury, M. (2024). Black Hat USA presentation on Microsoft 365 Copilot audit log gaps, August 2024. Korman, Z. (2025). Independent confirmation of persistent vulnerability, July 2025. Microsoft applied server-side fix August 17, 2025.
+
+[^12]: Dapr. "Introducing Verifiable Execution in Dapr 1.18." CNCF Blog, June 11, 2026. https://www.cncf.io/blog/2026/06/11/introducing-verifiable-execution-in-dapr-1-18/
 
 ---
 
