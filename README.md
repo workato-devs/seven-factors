@@ -1,12 +1,12 @@
 # The Seven Factors of the Agentic Control Plane
 
-Enterprise software teams are connecting AI agents to systems of record — CRMs, payment processors, ERPs, clinical systems. The connections work. The governance doesn't. Agents act without authorization. Mutations happen without audit trails. Failures produce errors the reasoning layer cannot interpret. Recovery logic gets invented on the fly — and billed by the token.
+Enterprise software teams are connecting AI agents to systems of record: CRMs, payment processors, ERPs, clinical systems. The connections work. The engineering doesn't. Failures return errors the reasoning layer can't interpret. Recovery logic gets invented on the fly, and billed by the token. State changes land with no reliable way to reconstruct what happened. Agents reach operations no one scoped them to.
 
-The **Seven Factors** is a methodology for building the control plane that sits between AI agents and enterprise systems: the deterministic layer that must be correct regardless of which model, framework, or agent architecture reasons above it. The reasoning layer owns intent. The control plane owns consequences. It is modeled on Adam Wiggins' Twelve-Factor App and synthesizes what the contributors have observed across over one trillion workflow executions at enterprise scale.
+The **Seven Factors** is an engineering methodology for building the control plane that sits between AI agents and enterprise systems: the deterministic layer that must be correct regardless of which model, framework, or agent architecture reasons above it. The reasoning layer owns intent. The control plane owns consequences. It is modeled on Adam Wiggins' Twelve-Factor App and synthesizes what the contributors have observed across over one trillion workflow executions at enterprise scale.
 
-The problems these factors address are emerging with agentic architectures. The solutions draw from decades of enterprise integration, distributed systems, and security engineering — applied to the novel boundary between probabilistic reasoning and deterministic systems.
+The problems these factors address are partly new and partly inherited. Agentic architectures introduce failure modes with no precedent, alongside familiar ones exposed at new scale. The solutions draw on decades of enterprise integration, distributed systems, and security engineering, applied to the novel boundary between probabilistic reasoning and deterministic systems.
 
-**The control plane between AI agents and enterprise systems is emerging infrastructure. This framework proposes a shared methodology for getting it right — so no team has to reinvent it alone.**
+**The control plane between AI agents and enterprise systems is emerging infrastructure. The Seven Factors is a shared engineering methodology for getting it right, so no team has to reinvent it alone.**
 
 ---
 
